@@ -63,6 +63,13 @@ def add_collision_pair(group, a, b):
     if b:
         collision_pairs[group][1].append(b)
 
+def remove_from_collision_pair(o):
+    for pairs in collision_pairs.values():
+        if o in pairs[0]:
+            pairs[0].remove(o)
+        if o in pairs[1]:
+            pairs[1].remove(o)
+
 def handle_collisions():
     for group, pairs in collision_pairs.items():
         for a in pairs[0]:
