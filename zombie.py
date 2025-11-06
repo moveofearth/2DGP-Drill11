@@ -33,9 +33,10 @@ class Zombie:
         self.load_images()
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1,1])
+        self.hp = 2
 
 
-    def get_bb(self):
+    def get__bb(self):
         return self.x - 100, self.y - 100, self.x + 100, self.y + 100
 
     def update(self):
@@ -54,8 +55,11 @@ class Zombie:
             Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200, 200)
         else:
             Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200, 200)
-        draw_rectangle(*self.get_bb())
+        draw_rectangle(*self.get__bb())
 
     def handle_event(self, event):
+        pass
+
+    def handle_collision(self, group, other):
         pass
 
