@@ -170,10 +170,20 @@ class Boy:
     def draw(self):
         self.state_machine.draw()
         self.font.draw(self.x-10, self.y + 50, f'{self.ball_count:02d}', (255, 255, 0))
+        draw_rectangle(*self.get__bb())
 
     def fire_ball(self):
         if self.ball_count > 0:
             self.ball_count -= 1
             ball = Ball(self.x+self.face_dir*40, self.y+100, self.face_dir * 15)
             game_world.add_object(ball, 1)
+            game_world.add_collision_pair('grass:ball', None, ball)
+            game_world.add_collision_pair('boy:ball', None, ball)
+
+    def get__bb(self):
+        return self.x - 50, self.y - 50, self.x+50, self.y + 50
+
+    def handle_collision(self, group, other):
+        if group == 'boy:ball':
+            self.ball_count += 1
 
