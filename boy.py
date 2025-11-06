@@ -179,6 +179,7 @@ class Boy:
             game_world.add_object(ball, 1)
             game_world.add_collision_pair('grass:ball', None, ball)
             game_world.add_collision_pair('boy:ball', None, ball)
+            game_world.add_collision_pair('zombie:ball', None, ball)
 
     def get__bb(self):
         return self.x - 50, self.y - 50, self.x+50, self.y + 50
